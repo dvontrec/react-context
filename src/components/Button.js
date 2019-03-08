@@ -7,9 +7,14 @@ class Button extends Component {
   static contextType = LanguageContext;
 
   render() {
-    // if the context is set to english text is submit, if not it is voorleggen
-    const text = this.context === 'english' ? 'Submit' : 'Voorleggen';
-    return <button className="ui button primary">{text}</button>;
+    return (
+      <button className="ui button primary">
+        {/* Uses the context consumer to acces the values in context */}
+        <LanguageContext.Consumer>
+          {value => (value === 'english' ? 'Submit' : 'Voorleggen')}
+        </LanguageContext.Consumer>
+      </button>
+    );
   }
 }
 
